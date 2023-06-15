@@ -1,0 +1,118 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Tick Tock Clock</title>
+    <style type="text/css" media="all">
+      *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body{
+        height: 100vh;
+        width: 100%;
+        background: #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .container{
+        position: relative;
+        height: 400px;
+        width: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        font-family: Sans-Serif;
+        font-weight: 600;
+      }
+      .tick{
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        transform: translateY(-70%);
+        z-index: 5;
+      }
+      .tick span{
+        padding: 5px;
+        font-size: 1.5rem;
+        color: green;
+        background: black;
+      }
+      .tick span:nth-child(2){
+        padding: 15px 20px;
+        background: transparent;
+      }
+      .circle{
+        position: absolute;
+        height: 300px;
+        width: 300px;
+        border: 1px solid #fff;
+        border-radius: 50%;
+        transform: rotate(30deg);
+        transition: .5s;
+      }
+      .circle span{
+        position: absolute;
+        top: 0;
+        inset: 15px;
+        font-size: 1.5rem;
+        color: green;
+        text-align: center;
+        transform: rotate(calc(var(--i)*30deg));
+      }
+      .circle span:nth-child(even){
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="tick">
+        <span class="text">T</span>
+        <span class="text"></span>
+        <span class="text">C</span>
+        <span class="text">K</span>
+      </div>
+      <div class="circle">
+        <span style="--i:1">I</span>
+        <span style="--i:2">O</span>
+        <span style="--i:3">I</span>
+        <span style="--i:4">O</span>
+        <span style="--i:5">I</span>
+        <span style="--i:6">O</span>
+        <span style="--i:7">I</span>
+        <span style="--i:8">O</span>
+        <span style="--i:9">I</span>
+        <span style="--i:10">O</span>
+        <span style="--i:11">I</span>
+        <span style="--i:12">O</span>
+      </div>
+    </div>
+    <script type="text/javascript" charset="utf-8">
+      let circle = document.querySelector('.circle');
+      let i=2;
+      setInterval(()=>{
+        console.log("hi");
+        let text = document.querySelectorAll('.text');
+        circle.style.transform=`rotate(${i*30}deg)`;
+        if(i%2==0){
+          text.forEach((item)=>{
+            item.style.color = "red";
+          })
+        }else{
+          text.forEach((item)=>{
+            item.style.color ="green";
+          })
+        }
+        i++;
+      }, 1000)
+    </script>
+  </body>
+</html>
